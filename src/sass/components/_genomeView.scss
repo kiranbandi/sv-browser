@@ -1,0 +1,106 @@
+@import "~rc-slider/assets/index";
+.genomeViewRoot {
+    position: relative;
+    .genomeViewSVG {
+        display: block;
+        margin: 0 auto;
+        .reverse-arrow {
+            fill: #25282f;
+            stroke: #25282f;
+            stroke-width: 3px;
+            stroke-linecap: round;
+        }
+        .markersText {
+            fill: white;
+            font-weight: bold;
+            font-size: 1em;
+        }
+        .marker-tick-container {
+            line {
+                stroke-width: 2px;
+            }
+            text {
+                font-weight: bolder;
+                font-size: 0.75em;
+            }
+        }
+        .chromosomeMarkers,
+        .markersText {
+            cursor: pointer;
+        }
+        .chromosomeMarkers {
+            stroke-linecap: round;
+        }
+        &.remove-cap {
+            .chromosomeMarkers {
+                stroke-linecap: butt;
+            }
+        }
+        .link {
+            fill: none;
+            stroke-opacity: 0.5;
+            pointer-events: none;
+            &.hidden-alignment-link {
+                stroke-opacity: 0;
+            }
+        }
+        .link-polygon {
+            stroke: none;
+            fill-opacity: 0.6;
+            pointer-events: none;
+            &.hidden-alignment-link {
+                fill-opacity: 0;
+            }
+        }
+        line.track-trails {
+            stroke-width: 0.5px;
+            stroke: #525765;
+        }
+        path.track-line-path {
+            stroke-width: 2px;
+            fill: none;
+        }
+        &.chrom-mode {
+            border-radius: 10px;
+            cursor: move;
+            .link {
+                cursor: pointer;
+                pointer-events: all;
+                &:hover {
+                    stroke-opacity: 0.9;
+                }
+            }
+            .link-polygon {
+                cursor: pointer;
+                pointer-events: all;
+                &:hover {
+                    fill-opacity: 0.9;
+                }
+            }
+        }
+    }
+
+    &.multi-mode {
+        display: inline-block;
+        margin-right: 20px;
+        vertical-align: top;
+        .genomeViewSVG {
+            display: inline-block;
+        }
+        .empty-chart-banner {
+            border-radius: 100px;
+            vertical-align: top;
+
+            h2 {
+                margin: 0px;
+                align-self: auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 90%;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }
+    }
+}

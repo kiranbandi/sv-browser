@@ -1,0 +1,83 @@
+.dotViewWrapper {
+    &.only-dotview {
+        text-align: center;
+        display: block;
+    }
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    .threeDcube {
+        .special-markers {
+            display: block !important;
+        }
+        .dot-plot-markers {
+            display: none;
+        }
+        .cube-label {
+            font-size: 14px;
+            font-weight: bold;
+        }
+    }
+    .dotViewRoot {
+        display: inline-block;
+        vertical-align: top;
+        position: relative;
+        & .dot-view-line {
+            stroke: #3a3a3a;
+            stroke-width: 2px;
+        }
+        .dot-plot-markers {
+            fill: white;
+            font-weight: bold;
+            font-size: 0.75em;
+            cursor: pointer;
+            text-anchor: middle;
+        }
+        .alignment-link-lines {
+            stroke: rgb(31, 119, 180);
+            stroke-width: 2px;
+            opacity: 0.5;
+            pointer-events: none;
+            &.hidden-alignment-link {
+                opacity: 0;
+            }
+        }
+        .tracksContainer {
+            path.track-line-path {
+                stroke-width: 2px;
+                fill: none;
+            }
+            &.rotate {
+                transform-origin: bottom right;
+                transform: rotate(90deg);
+            }
+        }
+        .tracksTrailsContainer {
+            line.track-trails {
+                stroke-width: 0.5px;
+                stroke: #525765;
+            }
+            &.rotate {
+                transform-origin: bottom right;
+                transform: rotate(90deg);
+            }
+        }
+        text.marker-x-lines-text {
+            // temporarily removing as it is causing unexpected behaviour in new chrome build
+            // transform: rotate(-90deg) translate(-10px);
+            transform-box: fill-box;
+        }
+    }
+    .chrom-mode {
+        cursor: move;
+        border-radius: 10px;
+        margin: 10px 15px 0 15px;
+        .alignment-link-lines {
+            cursor: pointer;
+            pointer-events: all;
+            &:hover {
+                opacity: 0.9;
+            }
+        }
+    }
+}

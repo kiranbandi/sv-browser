@@ -1,0 +1,70 @@
+.hiveView-root {
+    margin: 10px;
+
+    &.multi-map {
+        display: inline-block;
+        margin: 0px;
+
+        .hiveViewSVG {
+            margin: 0px auto;
+           
+            text.hive-marker-label {
+                text-anchor: middle;
+                font-size: 12px;
+                fill: white;
+                font-weight: bold;
+            }
+        }
+    }
+    
+    form.filter-panel-hive {
+        text-align: center;
+        .filter-row {
+            width: 375px;
+            display: inline-block;
+            margin: 10px 5px;
+            label {
+                padding-right: 10px;
+            }
+        }
+        .add-source {
+            margin-right: 15px;
+            font-size: 20px;
+            padding: 1px 12px;
+        }
+        .checkbox {
+            display: inline-block;
+            width: 150px;
+            margin-right: 15px;
+            label {
+                font-weight: bold;
+            }
+        }
+    }
+    .hiveViewSVG {
+        margin: 10px auto;
+        .hive-link-line {
+            fill: none;
+            stroke-opacity: 0.5;
+        }
+        .hive-link-polygon {
+            stroke: none;
+            fill-opacity: 0.5;
+        }
+        circle.hive-circle {
+            cursor: pointer;
+        }
+        text.hive-label {
+            font-size: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transform: translate(-8px, 8px);
+        }
+        text.hive-marker-label {
+            text-anchor: middle;
+            font-size: 15px;
+            fill: white;
+            font-weight: bold;
+        }
+    }
+}

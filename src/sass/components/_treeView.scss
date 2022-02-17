@@ -1,0 +1,70 @@
+.treeView-root {
+    margin: 10px;
+    form.filter-panel-tree {
+        text-align: center;
+        .filter-row {
+            width: 375px;
+            display: inline-block;
+            margin: 10px 5px;
+            label {
+                padding-right: 10px;
+            }
+        }
+        .add-source {
+            margin-right: 15px;
+            font-size: 20px;
+            padding: 1px 12px;
+        }
+        .checkbox {
+            display: inline-block;
+            width: 150px;
+            margin-right: -5px;
+            label {
+                font-weight: bold;
+            }
+        }
+    }
+    .treeViewSVG {
+        margin: 10px auto;
+        .reverse-arrow {
+            fill: #25282f;
+            stroke: #25282f;
+            stroke-width: 3px;
+            stroke-linecap: round;
+        }
+        .marker-tick-container {
+            line {
+                stroke-width: 2px;
+            }
+            text {
+                font-weight: bolder;
+                font-size: 0.75em;
+            }
+        }
+        .markersText {
+            fill: white;
+            font-weight: bold;
+            font-size: 1.0em;
+        }
+        .chromosomeMarkers,
+        .markersText {
+            cursor: pointer;
+        }
+        .chromosomeMarkers {
+            stroke-linecap: round;
+        }
+        &.remove-cap {
+            .chromosomeMarkers {
+                stroke-linecap: butt;
+            }
+        }
+        .tree-link-line {
+            fill: none;
+            stroke-opacity: 0.5;
+        }
+        .tree-link-polygon {
+            stroke: none;
+            fill-opacity: 0.5;
+        }
+    }
+}

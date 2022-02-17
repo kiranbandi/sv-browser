@@ -1,0 +1,57 @@
+.blockViewRoot {
+    position: relative;
+    &.rounded-corner {
+        border-radius: 10px;
+        margin: 0px auto;
+        display: block;
+    }
+    .blockViewSVG {
+        cursor: move;
+        .axis--x text {
+            fill: grey;
+        }
+        .axis--x path {
+            stroke: grey;
+        }
+        .axis--x line {
+            stroke: grey;
+        }
+        .marker-tracks {
+            opacity: 0.5;
+            stroke-width: 20px;
+            stroke: rgb(31, 119, 180);
+            &.target {
+                stroke: grey;
+            }
+        }
+        .blockview-makers {
+            cursor: pointer;
+            stroke-width: 20px;
+            stroke: rgb(31, 119, 180);
+            &.target-marker {
+                stroke: grey;
+            }
+            &.pale-marker {
+                stroke: white !important;
+                &.inverted {
+                    stroke: #141313 !important
+                }
+            }
+        }
+        .blockview-polylink {
+            opacity: 0.6;
+            fill: rgb(31, 119, 180);
+            cursor: pointer;
+            &:hover {
+                opacity: 0.9;
+            }
+            &.pale-link {
+                fill: white !important;
+                opacity: 1;
+                &.inverted {
+                    fill: #141313 !important
+                }
+            }
+        }
+    }
+}
