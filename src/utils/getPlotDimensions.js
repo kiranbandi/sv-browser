@@ -9,11 +9,11 @@ export default (plotType = 'dashboard') => {
     if (width < 513 || (width < height)) {
         configuration = {
             'genomeView': {
-                'height': 350,
+                'height': 450,
                 'width': 750,
                 'verticalPositions': {
                     'source': 25,
-                    'target': 325
+                    'target': 425
                 }
             },
             'dotView': {
@@ -67,14 +67,13 @@ export default (plotType = 'dashboard') => {
             }
         }
     } else {
-
         configuration = {
             'genomeView': {
-                'height': 0.45 * height,
+                'height': 0.55 * height,
                 'width': width,
                 'verticalPositions': {
                     'source': 45,
-                    'target': (0.45 * height) - 45
+                    'target': (0.55 * height) - 45
                 }
             },
             'dotView': {

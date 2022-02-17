@@ -115,61 +115,56 @@ class GenomeView extends Component {
 
         _.map(configuration.alignmentList, (alignment) => {
 
-
             let sourceChromosome = chromosomeMap[alignment.source],
                 targetChromosome = chromosomeMap[alignment.target];
 
             let sourceMarker = _.find(markerPositions.source, (o) => o.key == alignment.source),
                 targetMarker = _.find(markerPositions.target, (o) => o.key == alignment.target);
 
-            let sourceGeneWidth = 0,
-                targetGeneWidth = 0,
-                sourceX = ((alignment.sourceIndex - sourceChromosome.start) / (sourceChromosome.width)) * (sourceMarker.dx),
+            let sourceX = ((alignment.sourceIndex - sourceChromosome.start) / (sourceChromosome.width)) * (sourceMarker.dx),
                 targetX = ((alignment.targetIndex - targetChromosome.start) / (targetChromosome.width)) * (targetMarker.dx),
-
                 linkWidth = 2;
 
             let source, target;
             if (sourceMarker.reversed) {
                 source = {
                     'x': sourceMarker.x + sourceMarker.dx - sourceX,
-                    'y': sourceMarker.y - 5,
-                    'x1': sourceMarker.x + sourceMarker.dx - (sourceX + sourceGeneWidth)
+                    'y': sourceMarker.y - 5
                 }
             }
             else {
                 source = {
                     'x': sourceMarker.x + sourceX,
-                    'y': sourceMarker.y - 5,
-                    'x1': sourceMarker.x + sourceX + sourceGeneWidth
+                    'y': sourceMarker.y - 5
                 }
             }
 
             if (targetMarker.reversed) {
                 target = {
                     'x': targetMarker.x + targetMarker.dx - targetX,
-                    'y': targetMarker.y + 5,
-                    'x1': targetMarker.x + targetMarker.dx - (targetX + targetGeneWidth)
+                    'y': targetMarker.y + 5
                 }
             }
             else {
                 target = {
                     'x': targetMarker.x + targetX,
                     'y': targetMarker.y + 5,
-                    'x1': targetMarker.x + targetX + targetGeneWidth
                 }
             }
 
             // the marker height is 10 px so we add and reduce that to the y postion for top and bottom
             linkList.push({
                 source,
+                sourceMarker,
                 target,
+                targetMarker,
                 alignment,
                 type: alignment.type,
                 width: linkWidth,
                 taggedLink: false
             });
         })
+
         return linkList;
     }
 

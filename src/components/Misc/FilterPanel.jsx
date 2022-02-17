@@ -10,7 +10,7 @@ class FilterPanel extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            hideUnalignedRegions: false
+            showLoops: false
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.onToggleTrack = this.onToggleTrack.bind(this);
@@ -18,16 +18,14 @@ class FilterPanel extends Component {
     }
 
     toggleCheckboxChange(event) {
-        const { hideUnalignedRegions } = this.state, { isNormalized = false, showScale } = this.props;
+        const { showLoops } = this.state, { isNormalized = false } = this.props;
 
         if (event.target.id == 'markerNormalize') {
             this.props.setNormalizedState(!isNormalized);
         }
-        else if (event.target.id == 'markerScale') {
-            this.props.setMarkerScale(!showScale);
-        }
+
         else {
-            this.setState({ 'hideUnalignedRegions': !hideUnalignedRegions });
+            this.setState({ 'showLoops': !showLoops });
         }
 
     }
@@ -68,9 +66,9 @@ class FilterPanel extends Component {
         e.preventDefault();
         const sourceMarkers = $('.sourceChromosomeSelect').selectpicker('val'),
             targetMarkers = $('.targetChromosomeSelect').selectpicker('val'),
-            { hideUnalignedRegions } = this.state;
+            { showLoops } = this.state;
         //  if markers lists are null set them to empty lists
-        this.props.filterData(!!sourceMarkers ? sourceMarkers : [], !!targetMarkers ? targetMarkers : [], {}, hideUnalignedRegions);
+        this.props.filterData(!!sourceMarkers ? sourceMarkers : [], !!targetMarkers ? targetMarkers : [], {}, showLoops);
     }
 
     onToggleTrack(e) {
@@ -80,7 +78,7 @@ class FilterPanel extends Component {
 
     render() {
 
-        let { chromosomeMap = {} } = this.props, chromosomeMapList = _.map(chromosomeMap);
+        let { chromosomeMap = {}, isNormalized = false } = this.props, chromosomeMapList = _.map(chromosomeMap), { showLoops = false } = this.state;
 
         // create list of options
         const options = chromosomeMapList.map((value, index) => {
@@ -90,6 +88,25 @@ class FilterPanel extends Component {
         return (
             <div id='filter-panel-root' className='container-fluid'>
                 <form className="filter-panel-container">
+
+                    <div className="col-sm-12">
+                        <div className="checkbox custom-checkbox">
+                            <label>
+                                <input type="checkbox" id='markerNormalize' checked={isNormalized} onChange={this.toggleCheckboxChange} />
+                                {"Normalize Chromosome Marker Lengths"}
+                            </label>
+                        </div>
+                    </div>
+
+                    <div className="col-sm-12">
+                        <div className="checkbox custom-checkbox">
+                            <label>
+                                <input type="checkbox" id='showLoops' checked={showLoops} onChange={this.toggleCheckboxChange} />
+                                {"Highlight Loops"}
+                            </label>
+                        </div>
+                    </div>
+
 
 
                     <div className="col-sm-12">

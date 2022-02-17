@@ -240,11 +240,11 @@ export function filterMultiGenomeData(markers, plotType = 'multi-genome') {
 }
 
 
-export function filterData(sourceMarkers = [], targetMarkers = [], selectedAlignment = {}, hideUnalignedRegions = false) {
+export function filterData(sourceMarkers = [], targetMarkers = [], selectedAlignment = {}, showLoops = false) {
 
     const markers = { 'source': sourceMarkers, 'target': targetMarkers },
         alignmentList = window.synVisio.alignmentList,
-        updatedAlignmentList = processAlignment(markers, alignmentList);
+        updatedAlignmentList = processAlignment(markers, alignmentList, showLoops);
 
     return dispatch => {
         let filterLevel = {};

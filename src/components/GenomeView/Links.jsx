@@ -20,6 +20,54 @@ class Links extends Component {
         refineAlignmentList(filterLevel, alignmentList);
     }
 
+
+
+
+
+
+    // for (Connection conn : connections) {
+    //     from = conn.from;
+    //     to = conn.to;
+    //     if (from.chrom == targetChrom) { // only draw connections from target chromosome
+    //       x1 = map(from.index, 0, maxindexes[from.chrom], 100, width-100);
+    //       x2 = map(chromStarts[to.chrom]+to.index, 0, total, 100, width-100);
+    //       y = 500 + (to.chrom - 1) * 20;
+    //       noFill();
+    //       xMid = (x1+x2)/2;
+    //       if (conn.type.equals("FF")) {
+    //         stroke(200, 0, 0);
+    //         if (xMid - x1 < 100) {
+    //           cx1 = x1+200;
+    //           cx2 = x2-200;
+    //         } else {
+    //           cx1 = xMid;
+    //           cx2 = xMid;
+    //         }
+    //         bezier(x1, 100, cx1, 100, cx2, y, x2, y); // see https://processing.org/reference/bezier_.html
+    //       }
+    //       if (conn.type.equals("FR")) {
+    //         stroke(220, 140, 0);
+    //         //stroke(100, 0, 200);
+    //         bezier(x1, 100, x1+200, 100, x2+200, y, x2, y);
+    //       }
+    //       if (conn.type.equals("RR")) {
+    //         stroke(0, 200, 0);
+    //         if (x1 - xMid < 100) {
+    //           cx1 = x1-200;
+    //           cx2 = x2+200;
+    //         } else {
+    //           cx1 = xMid;
+    //           cx2 = xMid;
+    //         }
+    //         bezier(x1, 100, cx1, 100, cx2, y, x2, y);
+    //       }
+    //       if (conn.type.equals("RF")) {
+    //         stroke(0, 0, 200);
+    //         bezier(x1, 100, x1-200, 100, x2-200, y, x2, y);
+    //       }
+    //     }
+    //   }
+
     createLinkLinePath(d, type) {
         let curvature = 0.3;
         // code block sourced from d3-sankey https://github.com/d3/d3-sankey for drawing curved blocks
@@ -31,21 +79,43 @@ class Links extends Component {
             y2 = yi(0.2),
             y3 = yi(0.8);
 
+        let factor = 150;
+
+        let xMid = (x0 + x1) / 2, cx0, cx1;
+
         if (d.type == 'FF') {
-            return "M" + x0 + "," + y0 + // svg start point
-                "C" + (x0 + (0.1 * x0)) + "," + y2 + // curve point 1
-                " " + (x1 - (0.1 * x1)) + "," + y3 + // curve point 2
-                " " + x1 + "," + y1; // end point
+            if (xMid - x0 < d.sourceMarker.x) {
+                cx0 = x0 + factor;
+                cx1 = x1 - factor;
+            } else {
+                cx0 = xMid;
+                cx1 = xMid;
+            }
+        }
+        if (d.type == 'FR') {
+            cx0 = x0 + factor;
+            cx1 = x1 + factor;
+        }
+        if (d.type == 'RR') {
+            if (x0 - xMid < d.sourceMarker.x) {
+                cx0 = x0 - factor;
+                cx1 = x1 + factor;
+            } else {
+                cx0 = xMid;
+                cx1 = xMid;
+            }
+        }
+        else if (d.type == 'RF') {
+            cx0 = x0 - factor;
+            cx1 = x1 - factor;
         }
 
-        else {
-            return "M" + x0 + "," + y0 + // svg start point
-                "C" + x0 + "," + y2 + // curve point 1
-                " " + x1 + "," + y3 + // curve point 2
-                " " + x1 + "," + y1; // end point
-        }
+        return "M" + x0 + "," + y0 + // svg start point
+            "C" + cx0 + "," + y0 + // curve point 1
+            " " + cx1 + "," + y1 + // curve point 2
+            " " + x1 + "," + y1; // end point
+
     }
-
 
 
 
