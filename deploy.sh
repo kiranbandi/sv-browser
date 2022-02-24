@@ -1,13 +1,12 @@
 #!/bin/sh
-# Script to update apache server
+# Script to update server
 # create new build folder
 npm run build
-# stop  server
-service nginx stop
 # clear old assets
-rm -rf /var/www/html/
+sudo systemctl stop nginx
+rm -rf /var/www/sv-browser/
 # copy new assets
-cp -a build/. /var/www/html/
+cp -a build/. /var/www/sv-browser/
 # restart apache server
-service nginx restart
+sudo systemctl start nginx
 echo "Deploy complete successfully"
