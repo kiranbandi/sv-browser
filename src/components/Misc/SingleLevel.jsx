@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Information, GenomeView } from '../';
+import { Information, GenomeView, PanelView, TableView } from '../';
 
 export default class SingleLevel extends Component {
 
@@ -23,7 +23,9 @@ export default class SingleLevel extends Component {
                     areLinksAvailable &&
                     <div className='anchor-root'>
                         <div>
-                            <GenomeView configuration={configuration} plotType={plotType} />
+                            <PanelView configuration={configuration} plotType={plotType} />
+                            <GenomeView configuration={configuration} />
+                            <TableView configuration={configuration} />
                         </div>
                     </div>}
             </div>

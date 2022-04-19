@@ -108,13 +108,11 @@ export function refineAlignmentList(filterLevel, alignmentList) {
 
     let updatedAlignmentList = _.map(alignmentList, (o) => {
 
-        if (filterLevel.count != undefined && filterLevel.count.nominalValue > o.count) {
+        if (filterLevel.quality_score != undefined && (o.qualityScore < filterLevel.quality_score[0] || o.qualityScore > filterLevel.quality_score[1])) {
             o.hidden = true;
         }
-        else if (filterLevel.score != undefined && filterLevel.score.nominalValue > o.score) {
-            o.hidden = true;
-        }
-        else if (filterLevel.e_value != undefined && filterLevel.e_value.nominalValue > o.e_value && !filterLevel.e_value.adjustToZero) {
+
+        else if (filterLevel.support_value != undefined && (o.supportValue < filterLevel.support_value[0] || o.supportValue > filterLevel.support_value[1])) {
             o.hidden = true;
         }
         else if (filterLevel.source && filterLevel.source != o.source) {
@@ -146,10 +144,10 @@ export function refineAlignmentListTree(filterLevel, alignmentList) {
 
         const internalFilterLevel = filterLevel[internalList.source];
 
-
         let internalListModified;
 
         if (internalFilterLevel && (internalFilterLevel.source || internalFilterLevel.target)) {
+
             internalListModified = _.map(internalList.alignmentList, (o) => {
 
                 if (internalFilterLevel.source && o.source != internalFilterLevel.source) {

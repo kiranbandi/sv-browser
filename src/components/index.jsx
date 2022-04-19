@@ -13,3 +13,4 @@ export { default as HiveView } from './HiveView';
 export { default as SingleLevel } from './Misc/SingleLevel';
 export { default as GeneSearch } from './Misc/GeneSearch';
 export { default as PlotCharacteristics } from './Misc/PlotCharacteristics';
+export { default as TableView } from './Misc/TableView';

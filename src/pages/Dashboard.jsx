@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { getGenomicsData } from '../utils/fetchData';
 import { hashHistory } from 'react-router';
-import {
-    Loader, HiveView, TreeView, PlotCharacteristics,
-    SingleLevel, CubeView, GeneSearch
-} from '../components';
+import { Loader, SingleLevel } from '../components';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
@@ -56,7 +53,7 @@ class Dashboard extends Component {
 
     render() {
         let { loaderState, configuration, genome = {}, plotType } = this.props;
-        
+
         return (
             <div className='dashboard-root m-t'>
                 {!loaderState ?

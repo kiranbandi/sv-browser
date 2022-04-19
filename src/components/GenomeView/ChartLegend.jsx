@@ -40,7 +40,7 @@ export default class Legend extends Component {
     render() {
 
         return (
-            <svg className='custom-legend m-t' ref={node => this.node = node} width={200}>
+            <svg className='custom-legend' ref={node => this.node = node} height={145} width={200}>
                 <g className='legendSequential' transform={'scale(1.5)'}>
                 </g>
             </svg>

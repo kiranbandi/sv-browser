@@ -22,7 +22,9 @@ fetchData.getGenomicsData = function (sourceID) {
                         let source = parts[0].split('.')[2].slice(3),
                             sourceIndex = +parts[1],
                             target = parts[4].split(':')[0].split('.')[2].slice(3),
-                            targetIndex = +parts[4].split(':')[1].split('[').join(',').split(']').join(',').split(',')[0];
+                            targetIndex = +parts[4].split(':')[1].split('[').join(',').split(']').join(',').split(',')[0],
+                            qualityScore = +parts[5],
+                            supportValue = +parts[7].split(';')[1].split('=')[1];
 
                         let type = '--', tester = parts[4];
                         if (tester.indexOf('N[') == 0 && tester.indexOf('[') > -1) {
@@ -39,7 +41,8 @@ fetchData.getGenomicsData = function (sourceID) {
                         }
                         remapChromosome(chromosomeMap, source, sourceIndex);
                         remapChromosome(chromosomeMap, target, targetIndex);
-                        return { type, source, sourceIndex, target, targetIndex };
+                        
+                        return { type, source, sourceIndex, target, targetIndex, qualityScore, supportValue };
                     });
 
                 // set width in chromosome map
