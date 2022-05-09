@@ -25,7 +25,7 @@ export default class SingleLevel extends Component {
                         <div>
                             <PanelView configuration={configuration} plotType={plotType} />
                             <GenomeView configuration={configuration} />
-                            <TableView configuration={configuration} />
+                            {/* <TableView configuration={configuration} /> */}
                         </div>
                     </div>}
             </div>

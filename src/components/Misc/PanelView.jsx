@@ -50,11 +50,11 @@ class PanelView extends Component {
         return (
             <div className='panelViewRoot text-center' >
                 <div className='slider-wrapper'>
-                    <h4>SNP Quality Score</h4>
+                    <h4>SNP Quality Score ({quality_score[0]}-{quality_score[1]})</h4>
                     <Range min={min_quality_score} max={max_quality_score} value={quality_score} onChange={this.onQualityScoreChange} />
                 </div>
                 <div className='slider-wrapper'>
-                    <h4>Support Value</h4>
+                    <h4>Support Value ({support_value[0]}-{support_value[1]})</h4>
                     <Range min={min_support_value} max={max_support_value} value={support_value} onChange={this.onSupportValueChange} />
                 </div>
             </div>

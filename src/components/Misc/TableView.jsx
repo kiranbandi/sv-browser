@@ -2,6 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { customFilter } from '../../utils/genericUtility';
+import FileSaver from 'file-saver';
 
 const columns = [{
     Header: 'Source',
@@ -44,18 +45,33 @@ export default class SNPTableView extends Component {
         this.setState({ isVisible: !this.state.isVisible });
     }
 
+    saveFile = () => {
+
+        let { configuration = [] } = this.props,
+            { alignmentList } = configuration;
+
+        let refinedList = _.map(_.filter(alignmentList, d => !d.hidden), e => e.dataIndex);
+        var refinedDataList = _.map(_.filter(window.dataStore, (d) => refinedList.indexOf(d.id) > -1), e => e.value);
+
+        var blob = new Blob([refinedDataList.join("\n")], { type: "text/x-vcard;charset=utf-8" });
+        FileSaver.saveAs(blob, "refined_vcf" + ".vcf");
+
+    }
+
+
     render() {
 
         let { configuration = [] } = this.props,
             { alignmentList } = configuration;
+
+
 
         return (
             <div className='snp-table-wrapper container'>
                 {alignmentList.length > 0 &&
                     <div>
                         <h4 onClick={this.toggleVisibility} className="text-left">
-                            {this.state.isVisible ? <span className="icon icon-chevron-down"></span> : <span className="icon icon-chevron-right"></span>}
-                            View SNP Table
+                            SNP Table  <span onClick={this.saveFile} className="m-l icon icon-download"></span>
                         </h4>
                         <div className={'table-box ' + (this.state.isVisible ? '' : 'hidden-table-box')}>
                             <ReactTable

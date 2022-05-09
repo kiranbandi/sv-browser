@@ -102,3 +102,27 @@
         }
     }
 }
+
+
+
+.dropzone-container {
+    display: flex;
+    flex-direction: column;
+    .dropzone {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        border-width: 3px;
+        border-radius: 2px;
+        border-color: black;
+        border-style: dotted;
+        background-color: white;
+        color: black;
+        margin-top: 20px;
+        outline: none;
+        text-transform: capitalize;
+        font-size: 1.15em;
+    }
+}
