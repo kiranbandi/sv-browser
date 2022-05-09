@@ -18,7 +18,7 @@ class Home extends Component {
 
         <div className="container-fluid home-body">
           <h1>How does it work ?</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste quis et possimus, quod alias enim necessitatibus eligendi numquam nobis hic?</p>
+          <p>A realtime visualizer for VCF files. Head over to the dashboard and upload your VCF file to explore it through the visualization.</p>
         </div>
       </div>
 
